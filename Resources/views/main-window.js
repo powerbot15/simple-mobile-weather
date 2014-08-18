@@ -1,6 +1,6 @@
 function createMainWindow(){
 	var winMain = Ti.UI.createWindow({
-		backgroundColor: '#000000',
+		backgroundColor: '#83E421',
 		layout:'vertical'
 	}),
 		inputView = Ti.UI.createView({
