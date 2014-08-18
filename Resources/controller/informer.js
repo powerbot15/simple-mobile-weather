@@ -1,9 +1,7 @@
-var weatherView = require('../views/weather');
+var mainWin = require('../views/main-window'), 
+	weatherView = require('../views/weather');
 
 function WeatherInformer(){
-	this.window = Ti.UI.createWindow({
-		backgroundColor: '#000000'
-	});
 	this.init();
 }
 
@@ -36,6 +34,7 @@ WeatherInformer.prototype.getWeather = function(){
 	
 };
 WeatherInformer.prototype.renderWeather = function(){
+	this.window = mainWin();
 	this.window.add(weatherView(this.weather));
 	this.window.open();
 };
