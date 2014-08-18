@@ -20,7 +20,6 @@ function CreateWeatherView(weather){
 		});
 		
 		
-	view.add(closeButton);
 	view.add(caption);
 	view.add(picture);
 	view.add(temperature);	
