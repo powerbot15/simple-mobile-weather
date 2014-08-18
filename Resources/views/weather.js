@@ -21,7 +21,7 @@ function CreateWeatherView(weather){
 		});
 		
 	closeButton.addEventListener('click', function(event){
-		view.remove();
+		view.remove(true);
 	});
 	view.add(closeButton);
 	view.add(caption);
