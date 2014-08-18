@@ -11,6 +11,8 @@ function createMainWindow(){
 		cityInput = Ti.UI.createTextField({
 			width:'90%',
 			height:'50px',
+			backgroundColor:'#8118B3',
+			color:'#FFFFFF',
 			font:{fontSize:'14pt', fontWeight:'bold'}
 		}),
 		acceptButton = Ti.UI.createButton({

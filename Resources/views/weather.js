@@ -5,13 +5,6 @@ function CreateWeatherView(weather){
 		backgroundColor:'#FFFFFF',
 		layout:'vertical'
 	}),
-		closeButton = Ti.UI.createButton({
-			width : '98%',
-			// height : '20px',
-			backgroundColor:'#8118B3',
-			title: 'CLOSE'
-			
-		}),
 		caption = Ti.UI.createLabel({
 			color:'#000000',
 			text : weather.name
@@ -27,9 +20,6 @@ function CreateWeatherView(weather){
 		});
 		
 		
-	closeButton.addEventListener('click', function(event){
-		view.remove(true);
-	});
 	view.add(closeButton);
 	view.add(caption);
 	view.add(picture);
