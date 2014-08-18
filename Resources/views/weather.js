@@ -22,7 +22,7 @@ function CreateWeatherView(weather){
 			image:'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'
 		}),
 		temperature = Ti.UI.createLabel({
-			text : (weather.main.temp - 32) * 5 / 9 + ' C',
+			text : (weather.main.temp - 273.15).toFixed(2) + ' C',
 			font : {fontsize : '14pt'} 
 		});
 		

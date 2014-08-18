@@ -10,7 +10,7 @@ WeatherInformer.prototype.init = function(){
 	this.timetoWeather = [ {'today' : now} ];
 };
 
-WeatherInformer.prototype.getWeather = function(){
+WeatherInformer.prototype.getNowWeather = function(){
 	var	 self = this,
 		 url = 'http://api.openweathermap.org/data/2.5/weather?q=Cherkasy',
 	 	 client = Ti.Network.createHTTPClient({
