@@ -18,14 +18,20 @@ function CreateWeatherView(weather){
 		}),
 		picture = Ti.UI.createImageView({
 			image:'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'
+		}),
+		temperature = Ti.UI.createLabel({
+			text : (weather.main.temp - 32) * 5 / 9 + ' C',
+			font : {fontsize : '14pt'} 
 		});
+		
 		
 	closeButton.addEventListener('click', function(event){
 		view.remove(true);
 	});
 	view.add(closeButton);
 	view.add(caption);
-	view.add(picture);	
+	view.add(picture);
+	view.add(temperature);	
 	return view;
 	
 }
