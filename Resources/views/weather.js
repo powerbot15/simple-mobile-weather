@@ -17,6 +17,8 @@ function CreateWeatherView(weather){
 			text : weather.name
 		}),
 		picture = Ti.UI.createImageView({
+			width:'80px',
+			height:'80px',
 			image:'http://openweathermap.org/img/w/'+ weather.weather[0].icon +'.png'
 		}),
 		temperature = Ti.UI.createLabel({
