@@ -10,15 +10,14 @@ function createMainWindow(){
 		}),
 		cityInput = Ti.UI.createTextField({
 			width:'90%',
-			height:'70px',
+			height:'100px',
 			backgroundColor:'#8118B3',
-			color:'#FFFFFF',
-			font:{fontSize:'12pt', fontWeight:'bold'}
+			color:'#FFFFFF'
+			
 		}),
 		acceptButton = Ti.UI.createButton({
 			width:'9.5%',
-			height:'70px',
-			font:{fontSize:'10pt'},
+			height:'100px',
 			title:'Show'
 		});
 	inputView.add(cityInput);
