@@ -19,6 +19,9 @@ function createMainWindow(){
 			font:{fontSize:'14pt'},
 			title:'Show'
 		});
+	inputView.add(cityInput);
+	inputView.add(acceptButton);
+	winMain.add(inputView);
 	return winMain;
 }
 
