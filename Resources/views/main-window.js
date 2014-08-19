@@ -20,6 +20,9 @@ function createMainWindow(){
 			height:'100px',
 			title:'Show'
 		});
+	acceptButton.addEventListener('click', function(event){
+		app.getCityID(cityInput.value);	
+	});
 	inputView.add(cityInput);
 	inputView.add(acceptButton);
 	winMain.add(inputView);
