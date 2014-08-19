@@ -9,17 +9,26 @@ function createMainWindow(){
 			layout:'horizontal',
 			height:'10%'
 		}),
+		starFavourites = Ti.UI.createImageView({
+			width:'10%',
+			image:'../img/star.png',
+			backgroundColor:'#CDDB7F',
+			focusable:'true',
+			backgroundFocusedColor:'#ADBB5F',
+			backgroundSelectedColor:'#ADBB5F'
+		}),
 		cityInput = Ti.UI.createTextField({
-			width:'80%',
+			width:'75%',
 			height:'80px',
 			hintText:'Type city name',
 			backgroundColor:'#CDDB7F',
 			backgroundFocusedColor:'#CDDB7F',
-			color:'#FFFFFF'
+			color:'#000000',
+			font:{fontWeight:'bold'}
 			
 		}),
 		acceptButton = Ti.UI.createButton({
-			width:'20%',
+			width:'15%',
 			height:'80px',
 			font:{fontSize:'8pt'},
 			title:'GO',
@@ -37,6 +46,7 @@ function createMainWindow(){
 		app.getForecast(cityInput.value);	
 		// app.getNowWeather(cityInput.value);
 	});
+	inputView.add(starFavourites);
 	inputView.add(cityInput);
 	inputView.add(acceptButton);
 	winMain.add(inputView);
