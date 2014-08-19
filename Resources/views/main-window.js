@@ -11,6 +11,7 @@ function createMainWindow(){
 		}),
 		starFavourites = Ti.UI.createImageView({
 			width:'10%',
+			height:'80px',
 			image:'../img/star.png',
 			backgroundColor:'#CDDB7F',
 			focusable:'true',
@@ -24,7 +25,10 @@ function createMainWindow(){
 			backgroundColor:'#CDDB7F',
 			backgroundFocusedColor:'#CDDB7F',
 			color:'#000000',
-			font:{fontWeight:'bold'}
+			font:{fontWeight:'bold'},
+			borderWidth:'1px',
+			borderColor:'#BBBBBB',
+			borderRadius:'8px'
 			
 		}),
 		acceptButton = Ti.UI.createButton({
