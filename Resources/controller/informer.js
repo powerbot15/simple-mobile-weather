@@ -21,6 +21,7 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	         	alert('City not found');
 	         	return;
 	         }
+	         
 	         self.weather = responceObj;
 	         // alert(self.forecast.city.name);
 	         // self.renderWeather();
@@ -46,9 +47,11 @@ WeatherInformer.prototype.renderForecast = function(){
 };
 
 WeatherInformer.prototype.renderWeather = function(){
-	 
-	this.window.add(weatherView(this.weather));
+	var weatherViewPrepared = weatherView(this.weather); 
+	this.window.remove(this.window.getChildren()[1]);
+	this.window.add(weatherViewPrepared);
 	this.notFirstRender = true;
+	
 
 };
 module.exports = WeatherInformer;

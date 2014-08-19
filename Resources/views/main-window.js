@@ -1,3 +1,4 @@
+var loader = require('loader');
 function createMainWindow(){
 	var winMain = Ti.UI.createWindow({
 		backgroundColor: '#FAE59B',
@@ -6,7 +7,7 @@ function createMainWindow(){
 		inputView = Ti.UI.createView({
 			width:'100%',
 			layout:'horizontal',
-			height:'80px'
+			height:'10%'
 		}),
 		cityInput = Ti.UI.createTextField({
 			width:'80%',
@@ -28,6 +29,11 @@ function createMainWindow(){
 			backgroundFocusedColor:'#4C813C',
 		});
 	acceptButton.addEventListener('click', function(event){
+		if(app.notFirstRender){
+			app.window.remove(app.window.getChildren()[1]);
+		}
+		app.notFirstRender = true;
+		winMain.add(loader());
 		app.getForecast(cityInput.value);	
 		// app.getNowWeather(cityInput.value);
 	});

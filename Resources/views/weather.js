@@ -41,7 +41,7 @@ function CreateWeatherView(weather){
 		time = Ti.UI.createLabel({
 			color:'#000000',
 			// text : weather.list[i].dt_txt,
-			text : /*time.toGMTString()*/time.getDay()  +'.' + time.getMonth() + ' ' + time.getHours() + ':' + time.getMinutes() + ' ' + weather.list[i].dt_txt,
+			text : weather.list[i].dt_txt,
 			// font : {fontSize : '12pt'}, 
 			width:'30%'
 		});
@@ -53,10 +53,6 @@ function CreateWeatherView(weather){
 		
 		view.add(hourView);
 	}
-	if(app.notFirstRender){
-		app.window.remove(app.window.getChildren()[1]);
-	}
-
 	return view;
 	
 }
