@@ -8,11 +8,11 @@ function createMainWindow(){
 			width:'100%',
 			layout:'horizontal',
 			backgroundColor:'#CDDB7F',
-			height:'10%'
+			height:'82px'
 		}),
 		starFavourites = Ti.UI.createImageView({
 			width:'10%',
-			height:'80px',
+			// height:'60px',
 			image:'../img/star.png',
 			backgroundColor:'#CDDB7F',
 			focusable:'true',
