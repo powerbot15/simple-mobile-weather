@@ -7,6 +7,7 @@ function createMainWindow(){
 		inputView = Ti.UI.createView({
 			width:'100%',
 			layout:'horizontal',
+			backgroundColor:'#CDDB7F',
 			height:'10%'
 		}),
 		starFavourites = Ti.UI.createImageView({
@@ -27,8 +28,9 @@ function createMainWindow(){
 			color:'#000000',
 			font:{fontWeight:'bold'},
 			borderWidth:'1px',
-			borderColor:'#BBBBBB',
-			borderRadius:'8px'
+			borderColor:'#999999',
+			borderRadius:'25px',
+			zIndex:100
 			
 		}),
 		acceptButton = Ti.UI.createButton({
