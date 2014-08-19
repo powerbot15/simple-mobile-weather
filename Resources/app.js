@@ -2,6 +2,3 @@
 
 var Informer = require('controller/informer'),
 	app = new Informer();
-	app.getNowWeather();
-
-

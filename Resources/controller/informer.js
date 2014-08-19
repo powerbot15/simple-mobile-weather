@@ -6,7 +6,8 @@ function WeatherInformer(){
 }
 
 WeatherInformer.prototype.init = function(){
-
+	this.window = mainWin();
+	this.window.open();
 };
 
 WeatherInformer.prototype.getCityID = function(sityName){
@@ -39,7 +40,7 @@ WeatherInformer.prototype.getForecast = function(id){
 	     // function called when the response data is available
 	     onload : function(e) {
 	         self.forecast = JSON.parse(client.responseText);
-	         alert(self.forecast.city.name);
+	         // alert(self.forecast.city.name);
 	         // self.renderWeather();
 	         // alert('success');
 	     },
@@ -61,9 +62,9 @@ WeatherInformer.prototype.renderForecast = function(){
 	
 };
 
-WeatherInformer.prototype.getNowWeather = function(){
+WeatherInformer.prototype.getNowWeather = function(cityName){
 	var	 self = this,
-		 url = 'http://api.openweathermap.org/data/2.5/weather?q=Cherkasy',
+		 url = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName,
 	 	 client = Ti.Network.createHTTPClient({
 	     // function called when the response data is available
 	     onload : function(e) {
@@ -85,8 +86,7 @@ WeatherInformer.prototype.getNowWeather = function(){
 	
 };
 WeatherInformer.prototype.renderWeather = function(){
-	this.window = mainWin();
 	this.window.add(weatherView(this.weather));
-	this.window.open();
+
 };
 module.exports = WeatherInformer;
