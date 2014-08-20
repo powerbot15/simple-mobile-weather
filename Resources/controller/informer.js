@@ -7,6 +7,8 @@ function WeatherInformer(){
 
 WeatherInformer.prototype.init = function(){
 	this.window = mainWin();
+	this.lastForecast=Ti.App.Properties.getString('lastForecast', 'empty');
+	console.log(this.lastForecast);
 	this.window.open();
 };
 
@@ -21,7 +23,7 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	         	alert('City not found');
 	         	return;
 	         }
-	         
+	         Ti.App.Properties.setString('lastForecast', JSON.stringify(responceObj));
 	         self.weather = responceObj;
 	         // alert(self.forecast.city.name);
 	         // self.renderWeather();
@@ -42,8 +44,8 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	
 };
 
-WeatherInformer.prototype.renderForecast = function(){
-	
+WeatherInformer.prototype.parseForecast = function(forecast){
+	var pressure = forecast.pressure * 0.75008;
 };
 
 WeatherInformer.prototype.renderWeather = function(){
