@@ -2,11 +2,15 @@ function CreateWeatherView(weather){
 	var view = Ti.UI.createScrollView({
 		width : '100%',
 		height : '100%',
-		contentWidth:'95%',
+	
+		contentWidth:'98%',
+		contentOffset:{x : 5, y : 0},
 		contentHeight:'auto',
 		backgroundColor:'#FAE59B',
 		scrollType: 'vertical',
-		layout:'vertical'
+		layout:'vertical',
+		
+		
 	});
 	
 	for(var i = 0, n = weather.list.length; i < n; i++ ){
@@ -47,7 +51,7 @@ function CreateWeatherView(weather){
 			width:'30%'
 		});
 		pictureContainer.add(picture);
-		hourView.add(time);
+		hourView.add(timeString);
 		hourView.add(pictureContainer);
 		hourView.add(temperature);
 		hourView.add(caption);
@@ -58,28 +62,28 @@ function CreateWeatherView(weather){
 	
 }
 function convertUnixTime(unixTime){
-	var weekDays = ['Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat', 'Sun'];
+	var weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'];
 	var jsTime = new Date(unixTime * 1000),
 		day = jsTime.getDate(),
 		hour = jsTime.getHours(),
 		minute = jsTime.getMinutes(),
 		dayOfWeek = weekDays[jsTime.getDay()],
-		resultString; 
-	if(day < 9){
+		resultString = ''; 
+	if(day < 10){
 		resultString += '0' + day;
 	}
 	else{
 		resultString += day;
 	}
 	resultString += ', ' + dayOfWeek + ' ';
-	if(hour < 9){
+	if(hour < 10){
 		resultString += '0' + hour;
 	}
 	else{
 		resultString += hour;
 	}
 	resultString += ':';
-	if(minute < 9){
+	if(minute < 10){
 		resultString += '0' + minute;
 	}
 	else{

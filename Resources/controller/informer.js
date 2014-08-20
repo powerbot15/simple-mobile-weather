@@ -48,8 +48,8 @@ WeatherInformer.prototype.renderForecast = function(){
 
 WeatherInformer.prototype.renderWeather = function(){
 	var weatherViewPrepared = weatherView(this.weather); 
-	this.window.remove(this.window.getChildren()[1]);
 	this.window.add(weatherViewPrepared);
+	this.window.remove(this.window.getChildren()[1]);
 	this.notFirstRender = true;
 	
 
