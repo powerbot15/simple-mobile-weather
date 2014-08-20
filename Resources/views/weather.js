@@ -2,6 +2,8 @@ function CreateWeatherView(weather){
 	var view = Ti.UI.createScrollView({
 		width : '100%',
 		height : '100%',
+		contentWidth:'95%',
+		contentHeight:'auto',
 		backgroundColor:'#FAE59B',
 		scrollType: 'vertical',
 		layout:'vertical'
