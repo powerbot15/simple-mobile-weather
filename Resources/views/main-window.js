@@ -27,8 +27,8 @@ function createMainWindow(){
 			backgroundFocusedColor:'#CDDB7F',
 			color:'#000000',
 			font:{fontWeight:'bold'},
-			borderWidth:'1px',
-			borderColor:'#999999',
+			borderWidth:'2px',
+			borderColor:'#8D9B2F',
 			borderRadius:'25px',
 			zIndex:100
 			
@@ -44,6 +44,7 @@ function createMainWindow(){
 			backgroundFocusedColor:'#4C813C',
 		});
 	acceptButton.addEventListener('click', function(event){
+		cityInput.blur();
 		if(app.notFirstRender){
 			app.window.remove(app.window.getChildren()[1]);
 		}

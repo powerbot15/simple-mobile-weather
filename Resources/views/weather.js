@@ -10,8 +10,7 @@ function CreateWeatherView(weather){
 	});
 	
 	for(var i = 0, n = weather.list.length; i < n; i++ ){
-		var time = new Date(weather.list[i].dt * 1000);
-		
+		var time = convertUnixTime(weather.list[i].dt);
 		var hourView = Ti.UI.createView({
 			width:'100%',
 			height:'100px',
@@ -40,10 +39,10 @@ function CreateWeatherView(weather){
 			width:'20%',
 			layout:'horizontal'
 		}),
-		time = Ti.UI.createLabel({
+		timeString = Ti.UI.createLabel({
 			color:'#000000',
 			// text : weather.list[i].dt_txt,
-			text : weather.list[i].dt_txt,
+			text : time,
 			// font : {fontSize : '12pt'}, 
 			width:'30%'
 		});
@@ -57,5 +56,36 @@ function CreateWeatherView(weather){
 	}
 	return view;
 	
+}
+function convertUnixTime(unixTime){
+	var weekDays = ['Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat', 'Sun'];
+	var jsTime = new Date(unixTime * 1000),
+		day = jsTime.getDate(),
+		hour = jsTime.getHours(),
+		minute = jsTime.getMinutes(),
+		dayOfWeek = weekDays[jsTime.getDay()],
+		resultString; 
+	if(day < 9){
+		resultString += '0' + day;
+	}
+	else{
+		resultString += day;
+	}
+	resultString += ', ' + dayOfWeek + ' ';
+	if(hour < 9){
+		resultString += '0' + hour;
+	}
+	else{
+		resultString += hour;
+	}
+	resultString += ':';
+	if(minute < 9){
+		resultString += '0' + minute;
+	}
+	else{
+		resultString += hour;
+	}
+	
+	return resultString;
 }
 module.exports = CreateWeatherView;
