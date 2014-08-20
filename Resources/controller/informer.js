@@ -33,7 +33,7 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	         Ti.API.debug(e.error);
 	         alert('error');
 	     },
-	     timeout : 5000  // in milliseconds
+	     timeout : 20000  // in milliseconds
 	 });
 	// Prepare the connection.
 	client.open("GET", url);

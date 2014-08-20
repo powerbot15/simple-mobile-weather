@@ -3,8 +3,7 @@ function CreateWeatherView(weather){
 		width : '100%',
 		height : '100%',
 	
-		contentWidth:'98%',
-		contentOffset:{x : 5, y : 0},
+		contentWidth:'100%',
 		contentHeight:'auto',
 		backgroundColor:'#FAE59B',
 		scrollType: 'vertical',
@@ -23,38 +22,46 @@ function CreateWeatherView(weather){
 			borderColor:'#444444',
 			backgroundSelectedColor:'#999999'
 		}),
+		captionContainer = Ti.UI.createView({
+			width:'30%'
+		}),
 		caption = Ti.UI.createLabel({
 			color:'#000000',
-			text : weather.city.name + ', ' + weather.city.country,
-			width:'30%'
+			text : weather.city.name + ', ' + weather.city.country
+		}),
+		pictureContainer = Ti.UI.createView({
+			width:'20%'
+			// layout:'horizontal'
 		}),
 		picture = Ti.UI.createImageView({
 			width:'80px',
 			height:'80px',
 			image:'http://openweathermap.org/img/w/'+ weather.list[i].weather[0].icon +'.png'
 		}),
-		temperature = Ti.UI.createLabel({
-			color:'#000000',
-			text : 't:' + (weather.list[i].main.temp - 273.15).toFixed(0) + 'C',
-			// font : {fontSize : '12pt'}, 
+		temperatureContainer = Ti.UI.createView({
 			width:'20%'
 		}),
-		pictureContainer = Ti.UI.createView({
-			width:'20%',
-			layout:'horizontal'
+		
+		temperature = Ti.UI.createLabel({
+			color:'#6CA15C',
+			text : 't:' + (weather.list[i].main.temp - 273.15).toFixed(0) + 'C'
+			// font : {fontSize : '12pt'}, 
+		}),
+		timeContainer = Ti.UI.createView({
+			width:'30%'
 		}),
 		timeString = Ti.UI.createLabel({
 			color:'#000000',
-			// text : weather.list[i].dt_txt,
-			text : time,
-			// font : {fontSize : '12pt'}, 
-			width:'30%'
+			text : time
 		});
 		pictureContainer.add(picture);
-		hourView.add(timeString);
+		timeContainer.add(timeString);
+		temperatureContainer.add(temperature);
+		captionContainer.add(caption);
+		hourView.add(timeContainer);
 		hourView.add(pictureContainer);
-		hourView.add(temperature);
-		hourView.add(caption);
+		hourView.add(temperatureContainer);
+		hourView.add(captionContainer);
 		
 		view.add(hourView);
 	}
