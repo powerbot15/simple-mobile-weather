@@ -101,10 +101,11 @@ function CreateWelcomeView(favourites){
 	}),
 	favouritesHeader = Ti.UI.createLabel({
 		width:'100%',
-		
+		height:'80px',
+		color:'#000000',
 		font:{fontSize : '12pt'},
-		text: 'Favourites :'
-		// textAlign:center
+		text: 'Favourites :',
+		textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER
 		
 	}),
 	favouritesBody = Ti.UI.createView({
@@ -114,14 +115,15 @@ function CreateWelcomeView(favourites){
 		width:'90%',
 		height:'80px',
 		title:'Go to Search',
-		backgroundColor:'#DDDDDD'
+		color:'#AA0000',
+		backgroundColor:'#009900'
 	});
 	
 	goSearch.addEventListener('click', function(){
-		
+		app.goSearch();
 	});
 	favouritesView.add(favouritesHeader);
-	favouritesView.add(favouritesBody);
+	// favouritesView.add(favouritesBody);
 	favouritesView.add(goSearch);
 	welcomeView.add(favouritesView);
 	

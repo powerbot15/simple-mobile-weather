@@ -8,12 +8,17 @@ function WeatherInformer(){
 
 WeatherInformer.prototype.init = function(){
 	// this.window = mainWin();
-	this.lastForecast = JSON.parse(Ti.App.Properties.getString('lastForecast', 'empty'));
+	this.lastForecast = JSON.parse(Ti.App.Properties.getString('lastForecast', '{}'));
 	this.favourites = JSON.parse(Ti.App.Properties.getString('favourites','[]'));
 	console.log(this.favourites);
 	this.window = welcomeView(this.favourites);
 	// this.window.add(welcomeView(this.favourites));
 	this.window.open();
+};
+
+WeatherInformer.prototype.goSearch = function(){
+	this.window.remove(this.window.getChildren()[0]);
+	this.window.add(mainWin());
 };
 
 WeatherInformer.prototype.getForecast = function(cityName){

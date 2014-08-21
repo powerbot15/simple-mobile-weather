@@ -47,9 +47,9 @@ function createMainWindow(){
 		});
 	acceptButton.addEventListener('click', function(event){
 		cityInput.blur();
-		// if(app.notFirstRender){
+		if(app.notFirstRender){
 			app.window.remove(app.window.getChildren()[1]);
-		// }
+		}
 		app.notFirstRender = true;
 		winMain.add(loader());
 		app.getForecast(cityInput.value);	
