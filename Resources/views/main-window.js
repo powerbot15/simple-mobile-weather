@@ -1,6 +1,8 @@
 var loader = require('loader');
 function createMainWindow(){
-	var winMain = Ti.UI.createWindow({
+	var winMain = Ti.UI.createView({
+		width:'100%',
+		height:'100%',
 		backgroundColor: '#FAE59B',
 		layout:'vertical'
 	}),
@@ -45,18 +47,24 @@ function createMainWindow(){
 		});
 	acceptButton.addEventListener('click', function(event){
 		cityInput.blur();
-		if(app.notFirstRender){
+		// if(app.notFirstRender){
 			app.window.remove(app.window.getChildren()[1]);
-		}
+		// }
 		app.notFirstRender = true;
 		winMain.add(loader());
 		app.getForecast(cityInput.value);	
 		// app.getNowWeather(cityInput.value);
 	});
+	starFavourites.addEventListener('click', function(){
+		app.addToFavourites(cityInput.value);
+	});
 	inputView.add(starFavourites);
 	inputView.add(cityInput);
 	inputView.add(acceptButton);
 	winMain.add(inputView);
+	winMain.addEventListener('androidback', function(){
+		winMain.close();
+	});
 	return winMain;
 }
 

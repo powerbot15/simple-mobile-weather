@@ -6,7 +6,8 @@ function createLoader(){
 	}),
 		loader = Ti.UI.createImageView({
 		image : '../img/loader.png',
-		width : '80px'
+		width : '80px',
+		height:'80px'
 	});
 	var matrix2d = Ti.UI.create2DMatrix();
 	matrix2d = matrix2d.rotate(360); // in degrees
