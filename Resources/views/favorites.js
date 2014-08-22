@@ -86,7 +86,7 @@ function createFavoritesView(favorites){
 		
 		favoriteRow = Ti.UI.createView({
 			width:'100%',
-			height: '80px',
+			height: '60px',
 			layout : 'horizontal',
 			id : favorites[i]
 		});
@@ -100,7 +100,8 @@ function createFavoritesView(favorites){
 		});
 		favoriteName = Ti.UI.createLabel({
 			text : favorites[i],
-			color : '#333333'
+			color : '#333333',
+			id : favorites[i]
 		});
 		favoriteNameContainer.add(favoriteName);
 		
@@ -119,7 +120,7 @@ function createFavoritesView(favorites){
 		});
 		favoriteNameContainer.addEventListener('click', function(event){
 			this.setBackgroundColor('#BBBBBB');
-			app.goSearchView(event.source.text);
+			app.goSearchView(event.source.id);
 			// console.log(event.source);
 		});
 		favoriteRemoveContainer.addEventListener('click', function(event){
