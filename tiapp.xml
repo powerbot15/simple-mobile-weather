@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>com.weather.app</id>
     <name>weather-informer</name>
-    <version>1.0</version>
+    <version>1.0.0</version>
     <publisher>oleh</publisher>
     <url>http://</url>
     <description>not specified</description>

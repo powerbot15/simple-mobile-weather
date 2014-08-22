@@ -1,8 +1,8 @@
-#appname: weather-informer
-#publisher: oleh
-#url: http://
-#image: appicon.png
-#appid: com.weather.app
-#desc: undefined
-#type: mobile
-#guid: fc722254-f0b0-4c3d-bda3-c91fee0f631f
+#appname:weather-informer
+#publisher:oleh
+#url:http://
+#image:appicon.png
+#appid:com.weather.app
+#desc:not specified
+#type:mobile
+#guid:fc722254-f0b0-4c3d-bda3-c91fee0f631f

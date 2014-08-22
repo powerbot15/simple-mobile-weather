@@ -1,24 +1,39 @@
-var mainWin = require('../views/main-window'), 
+var searchView = require('../views/search'), 
 	weatherView = require('../views/weather'),
-	welcomeView = require('../views/welcome');
+	welcomeView = require('../views/welcome'),
+	favoritesView = require('../views/favorites'),
+	loader = require('../views/loader');
 
 function WeatherInformer(){
 	this.init();
 }
 
 WeatherInformer.prototype.init = function(){
-	// this.window = mainWin();
+	// this.window = searchView();
 	this.lastForecast = JSON.parse(Ti.App.Properties.getString('lastForecast', '{}'));
-	this.favourites = JSON.parse(Ti.App.Properties.getString('favourites','[]'));
-	console.log(this.favourites);
-	this.window = welcomeView(this.favourites);
-	// this.window.add(welcomeView(this.favourites));
+	this.favorites = JSON.parse(Ti.App.Properties.getString('favorites','[]'));
+	console.log(this.favorites);
+	this.window = welcomeView();
+	this.window.add(favoritesView(this.favorites));
+	// this.window.add(welcomeView(this.favorites));
 	this.window.open();
 };
 
-WeatherInformer.prototype.goSearch = function(){
+WeatherInformer.prototype.goSearchView = function(){
 	this.window.remove(this.window.getChildren()[0]);
-	this.window.add(mainWin());
+	this.window.add(searchView());
+};
+
+WeatherInformer.prototype.search = function(searchString){
+		var app = this;
+		if(app.notFirstRender){
+			app.window.remove(app.window.getChildren()[1]);
+		}
+		else{
+			app.notFirstRender = true;	
+		}
+		app.window.add(loader());
+		app.getForecast(searchString);	
 };
 
 WeatherInformer.prototype.getForecast = function(cityName){
@@ -58,9 +73,9 @@ WeatherInformer.prototype.parseForecast = function(forecast){
 	var pressure = forecast.pressure * 0.75008;
 };
 
-WeatherInformer.prototype.addToFavourites = function(value){
-	this.favourites.push(value);
-	Ti.App.Properties.setString('favourites', JSON.stringify(this.favourites));
+WeatherInformer.prototype.addToFavorites = function(value){
+	this.favorites.push(value);
+	Ti.App.Properties.setString('favorites', JSON.stringify(this.favorites));
 };
 
 WeatherInformer.prototype.renderWeather = function(){

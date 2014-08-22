@@ -1,16 +1,16 @@
-function CreateWelcomeView(favourites){
+function CreateWelcomeView(){
 	
 	var welcomeView = Ti.UI.createWindow({
 			// width:'100%',
 			// height:'100%',
 			layout:'vertical',
 			backgroundColor: '#FAE59B'
-		}),
-		// favouritesView = Ti.UI.createListView({
+	});
+		// favoritesView = Ti.UI.createListView({
 // 			
 		// }),
-		// favouritesList = Ti.UI.createListSection({
-			// headerTitle : 'FAVOURITES',
+		// favoritesList = Ti.UI.createListSection({
+			// headerTitle : 'favorites',
 			// sections : []
 // 		
 		// });
@@ -51,11 +51,11 @@ function CreateWelcomeView(favourites){
 	    // ]
 	// };
 // 	
-	// if(!favourites.length){
+	// if(!favorites.length){
 		// return(welcomeView);
 	// }
 // 	
-	// var listFavourites = Ti.UI.createListView({
+	// var listfavorites = Ti.UI.createListView({
 	    // // Maps the plainTemplate object to the 'plain' style name
 	    // templates: { 'plain': plainTemplate },
 	    // // Use the plain template, that is, the plainTemplate object defined earlier
@@ -64,14 +64,14 @@ function CreateWelcomeView(favourites){
 	// });
 // 
 	// var data = [];
-	// for (var i = 0; i < favourites.length; i++) {
+	// for (var i = 0; i < favorites.length; i++) {
 	    // data.push({
 	        // // Maps to the rowtitle component in the template
 	        // // Sets the text property of the Label component
-	        // rowtitle : { text: favourites[i] },
+	        // rowtitle : { text: favorites[i] },
 	        // // Sets the regular list data properties
 	        // properties : {
-	            // itemId: favourites[i],
+	            // itemId: favorites[i],
 	            // accessoryType: Ti.UI.LIST_ACCESSORY_TYPE_NONE,
 	            // borderWidth : '1px',
 	            // borderColor : '#777777'
@@ -80,8 +80,8 @@ function CreateWelcomeView(favourites){
 	// }
 // 	
 	// var section = Ti.UI.createListSection({items: data});
-	// listFavourites.sections = [section];
-	// listFavourites.addEventListener('itemclick', function(e){
+	// listFavorites.sections = [section];
+	// listFavorites.addEventListener('itemclick', function(e){
 	    // // Only respond to clicks on the label (rowtitle) or image (pic)
 	    // if (e.bindId == 'rowtitle' || e.bindId == 'pic') {
 	        // var item = e.section.getItemAt(e.itemIndex);
@@ -94,45 +94,13 @@ function CreateWelcomeView(favourites){
 	        // e.section.updateItemAt(e.itemIndex, item);
 	    // }      
 	// });
-	favouritesView = Ti.UI.createView({
-		width:'100%',
-		height:'100%',
-		layout:'vertical'
-	}),
-	favouritesHeader = Ti.UI.createLabel({
-		width:'100%',
-		height:'80px',
-		color:'#000000',
-		font:{fontSize : '12pt'},
-		text: 'Favourites :',
-		textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER
-		
-	}),
-	favouritesBody = Ti.UI.createView({
-		width:'100%'
-	}),
-	goSearch = Ti.UI.createButton({
-		width:'90%',
-		height:'80px',
-		title:'Go to Search',
-		color:'#AA0000',
-		backgroundColor:'#009900'
-	});
-	
-	goSearch.addEventListener('click', function(){
-		app.goSearch();
-	});
-	favouritesView.add(favouritesHeader);
-	// favouritesView.add(favouritesBody);
-	favouritesView.add(goSearch);
-	welcomeView.add(favouritesView);
 	
 	return(welcomeView);
 }
 
-	function removeItem(e) {
+/*	function removeItem(e) {
 		Ti.API.info(e.type);
-	}
+	}*/
 
 
 module.exports = CreateWelcomeView;
