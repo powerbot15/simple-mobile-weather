@@ -1,5 +1,5 @@
 
-function createSearchView(){
+function createSearchView(searchValue){
 	var searchView = Ti.UI.createView({
 		width:'100%',
 		height:'82px',
@@ -28,11 +28,12 @@ function createSearchView(){
 			backgroundColor:'#CDDB7F',
 			backgroundFocusedColor:'#CDDB7F',
 			color:'#000000',
+			value: searchValue ? searchValue : '',
 			font:{fontWeight:'bold'},
 			borderWidth:'2px',
 			borderColor:'#8D9B2F',
-			borderRadius:'25px',
-			zIndex:100
+			borderRadius:'25px'
+			
 			
 		}),
 		acceptButton = Ti.UI.createButton({
@@ -47,21 +48,30 @@ function createSearchView(){
 		});
 	acceptButton.addEventListener('click', function(event){
 		cityInput.blur();
-		app.search(cityInput.value);
+		if(cityInput.value.length > 0){
+			app.search(cityInput.value);
+		}
+		else{
+			cityInput.focus();
+		}
 		// app.getNowWeather(cityInput.value);
 	});
+	
+	cityInput.addEventListener('return', function(){
+		cityInput.blur();
+		app.search(cityInput.value);
+	});
+	
 	starFavourites.addEventListener('click', function(){
-		app.addToFavorites(cityInput.value);
+
+		app.addToFavorites(cityInput.value);	
+
 	});
 	inputView.add(starFavourites);
 	inputView.add(cityInput);
 	inputView.add(acceptButton);
 	searchView.add(inputView);
 	return searchView;
-//	searchView.addEventListener('androidback', function(){
-	//	searchView.close();
-	//});
-	
 }
 
 module.exports = createSearchView;

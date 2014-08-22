@@ -19,9 +19,12 @@ WeatherInformer.prototype.init = function(){
 	this.window.open();
 };
 
-WeatherInformer.prototype.goSearchView = function(){
+WeatherInformer.prototype.goSearchView = function(searchValue){
 	this.window.remove(this.window.getChildren()[0]);
-	this.window.add(searchView());
+	this.window.add(searchView(searchValue));
+	if(searchValue){
+		this.search(searchValue);
+	}
 };
 
 WeatherInformer.prototype.search = function(searchString){
@@ -40,18 +43,18 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	var	 self = this,
 		 url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&mode=json',
 	 	 client = Ti.Network.createHTTPClient({
-	     // function called when the response data is available
 	     onload : function(e) {
 	     	 var responceObj = JSON.parse(client.responseText);
    	         if(responceObj.cod === "404"){
 	         	alert('City not found');
+	         	self.window.remove(self.window.getChildren()[1]);
 	         	return;
 	         }
 	         Ti.App.Properties.setString('lastForecast', JSON.stringify(responceObj));
 	         self.weather = responceObj;
+	         self.canFavorite = true;
 	         self.renderWeather();
 	     },
-	     // function called when an error occurs, including a timeout
 	     onerror : function(e) {
 	         Ti.API.debug(e.error);
 	         self.weather = Ti.App.Properties.getString('lastForecast', 'empty');
@@ -62,11 +65,8 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	     },
 	     timeout : 20000  // in milliseconds
 	 });
-	// Prepare the connection.
 	client.open("GET", url);
-	// Send the request.
 	client.send();
-	
 };
 
 WeatherInformer.prototype.parseForecast = function(forecast){
@@ -74,6 +74,11 @@ WeatherInformer.prototype.parseForecast = function(forecast){
 };
 
 WeatherInformer.prototype.addToFavorites = function(value){
+	if(!app.canFavorite){return;}
+	app.canFavorite = false;
+	for(var i = 0; i < this.favorites.length; i++){
+		if(value == this.favorites[i]){return;}
+	}
 	this.favorites.push(value);
 	Ti.App.Properties.setString('favorites', JSON.stringify(this.favorites));
 };

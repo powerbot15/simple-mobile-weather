@@ -13,27 +13,28 @@ function createFavoritesView(favorites){
 		textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER
 		
 	}),
-	favoritesBody = Ti.UI.createView({
-		width:'100%'
-	}),
 	goSearch = Ti.UI.createButton({
 		width:'90%',
 		height:'80px',
+		top:'10px',// bottom:'60px',
 		title:'Go to Search',
 		color:'#AA0000',
-		backgroundColor:'#009900'
+		backgroundColor:'#009900',
+		borderRadius:'15px'
 	}),
 	favoritesContent = Ti.UI.createScrollView({
-		width : '100%',
+		top:'10px',
+		// bottom:'100px',
+		width : '95%',
 		height : '80%',
-	
+		borderColor:'#685D1E',
+		borderWidth:'1px',
 		contentWidth:'100%',
 		contentHeight:'auto',
 		backgroundColor:'#FAE59B',
 		scrollType: 'vertical',
 		layout:'vertical',
-		
-		
+		borderRadius:'15px'
 	}),
 	favoriteRow, favoriteNameContainer, favoriteName, favoriteRemoveContainer,favoriteRemoveButton;
 	
@@ -42,17 +43,60 @@ function createFavoritesView(favorites){
 	});
 	
 	favoritesView.add(favoritesHeader);
+	
+		favoriteRow = Ti.UI.createView({
+			width:'100%',
+			height: '80px',
+			layout : 'horizontal',
+			id : i
+			
+		});
+		favoriteNameContainer = Ti.UI.createView({
+			width:'80%',
+			borderWidth:'1px',
+			borderColor:'#685D1E',
+			color:'#FFFFFF',
+			backgroundColor:'#D3EB9E'
+		});
+		favoriteName = Ti.UI.createLabel({
+			text : 'City',
+			color : '#000000'
+		});
+		favoriteNameContainer.add(favoriteName);
+		
+		favoriteRemoveContainer = Ti.UI.createView({
+			width:'20%',
+			borderWidth:'1px',
+			borderColor:'#685D1E',
+			backgroundColor:'#D3EB9E'
+			// backgroundColor:'#'
+			
+		});
+		// favoriteRemoveButton = Ti.UI.createButton({
+			// width : '32px',
+			// height : '32px',
+			// backgroundImage : '../img/remove.png',
+			// id : favorites[i]
+		// });
+	favoriteRow.add(favoriteNameContainer);
+	favoriteRow.add(favoriteRemoveContainer);
+	favoritesContent.add(favoriteRow);
+	
 	for(var i = 0; i < favorites.length; i++){
 		
 		favoriteRow = Ti.UI.createView({
 			width:'100%',
+			height: '80px',
 			layout : 'horizontal',
 			id : favorites[i]
 		});
 		favoriteNameContainer = Ti.UI.createView({
-			width:'60%',
+			width:'80%',
 			borderWidth:'1px',
-			borderColor:'#685D1E'
+			borderColor:'#685D1E',
+			backgroundFocusedColor:'#BBBBBB',
+			backgroundSelectedColor:'#BBBBBB',
+			id:favorites[i]
 		});
 		favoriteName = Ti.UI.createLabel({
 			text : favorites[i],
@@ -61,15 +105,27 @@ function createFavoritesView(favorites){
 		favoriteNameContainer.add(favoriteName);
 		
 		favoriteRemoveContainer = Ti.UI.createView({
-			width:'40%',
+			width:'20%',
 			borderWidth:'1px',
 			borderColor:'#685D1E'
+			// backgroundColor:'#'
+			
 		});
 		favoriteRemoveButton = Ti.UI.createButton({
 			width : '32px',
 			height : '32px',
 			backgroundImage : '../img/remove.png',
 			id : favorites[i]
+		});
+		favoriteNameContainer.addEventListener('click', function(event){
+			this.setBackgroundColor('#BBBBBB');
+			app.goSearchView(event.source.text);
+			// console.log(event.source);
+		});
+		favoriteRemoveContainer.addEventListener('click', function(event){
+			this.setBackgroundColor('#C64668');
+			favoritesContent.remove(this.getParent());
+			
 		});
 		favoriteRemoveContainer.add(favoriteRemoveButton);
 		favoriteRow.add(favoriteNameContainer);

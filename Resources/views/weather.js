@@ -7,7 +7,7 @@ function CreateWeatherView(weather){
 		contentHeight:'auto',
 		backgroundColor:'#FAE59B',
 		scrollType: 'vertical',
-		layout:'vertical',
+		layout:'vertical'
 		
 		
 	});
