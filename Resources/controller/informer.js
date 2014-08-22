@@ -41,7 +41,7 @@ WeatherInformer.prototype.search = function(searchString){
 
 WeatherInformer.prototype.getForecast = function(cityName){
 	var	 self = this,
-		 url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&APPID=b595a500daacfaa71158e3af1ff44f08&mode=json',
+		 url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&mode=json',
 	 	 client = Ti.Network.createHTTPClient({
 	     onload : function(e) {
 	     	 var responceObj = JSON.parse(client.responseText);
