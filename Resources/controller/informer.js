@@ -90,8 +90,8 @@ WeatherInformer.prototype.parseForecast = function(apiForecast){
 		time;
 	for(var i = 0; i < apiForecast.list.length; i++){
 		time = new Date(apiForecast.list[i].dt * 1000);//this.convertUnixTime(apiForecast.list[i].dt);
-		if(forecastDays.length > 0 && time.getDate() == forecastDays[forecast.length - 1].date){
-			forecastDays[forecast.length - 1].times.push(apiForecast.list[i]);
+		if(forecastDays.length > 0 && time.getDate() == forecastDays[forecastDays.length - 1].date){
+			forecastDays[forecastDays.length - 1].times.push(apiForecast.list[i]);
 		}
 		else{
 			forecastDays.push({
