@@ -35,6 +35,18 @@ WeatherInformer.prototype.search = function(searchString){
 		else{
 			app.notFirstRender = true;	
 		}
+		
+// var view1 = Ti.UI.createView({ backgroundColor:'#123' });
+// var view2 = Ti.UI.createView({ backgroundColor:'#246' });
+// var view3 = Ti.UI.createView({ backgroundColor:'#48b' });
+// 
+// var scrollableView = Ti.UI.createScrollableView({
+  // views:[view1,view2,view3],
+  // showPagingControl:true
+// });
+// 
+// app.window.add(scrollableView);
+		
 		app.window.add(loader());
 		app.getForecast(searchString);	
 };
@@ -52,6 +64,7 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	         }
 	         Ti.App.Properties.setString('lastForecast', JSON.stringify(responceObj));
 	         self.weather = responceObj;
+	         self.parseForecast(responceObj);
 	         self.canFavorite = true;
 	         self.renderWeather();
 	     },
@@ -69,8 +82,28 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	client.send();
 };
 
-WeatherInformer.prototype.parseForecast = function(forecast){
-	var pressure = forecast.pressure * 0.75008;
+WeatherInformer.prototype.parseForecast = function(apiForecast){
+	var forecastDays = [],
+		oneDay = {
+			
+		}, 
+		time;
+	for(var i = 0; i < apiForecast.list.length; i++){
+		time = new Date(apiForecast.list[i].dt * 1000);//this.convertUnixTime(apiForecast.list[i].dt);
+		if(forecastDays.length > 0 && time.getDate() == forecastDays[forecast.length - 1].date){
+			forecastDays[forecast.length - 1].times.push(apiForecast.list[i]);
+		}
+		else{
+			forecastDays.push({
+				date : time.getDate(),
+				times : [] 
+			});
+
+		}
+	}
+	console.log(forecastDays.length);
+	// var time = app.convertUnixTime(weather.list[i].dt);
+	// var pressure = apiForecast.pressure * 0.75008;
 };
 
 WeatherInformer.prototype.addToFavorites = function(value){
@@ -88,5 +121,36 @@ WeatherInformer.prototype.renderWeather = function(){
 	this.window.add(weatherViewPrepared);
 	this.window.remove(this.window.getChildren()[1]);
 	this.notFirstRender = true;
+};
+WeatherInformer.prototype.convertUnixTime = function(unixTime){
+	var weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'];
+	var jsTime = new Date(unixTime * 1000),
+		day = jsTime.getDate(),
+		hour = jsTime.getHours(),
+		minute = jsTime.getMinutes(),
+		dayOfWeek = weekDays[jsTime.getDay()],
+		resultString = ''; 
+	if(day < 10){
+		resultString += '0' + day;
+	}
+	else{
+		resultString += day;
+	}
+	resultString += ', ' + dayOfWeek + ' ';
+	if(hour < 10){
+		resultString += '0' + hour;
+	}
+	else{
+		resultString += hour;
+	}
+	resultString += ':';
+	if(minute < 10){
+		resultString += '0' + minute;
+	}
+	else{
+		resultString += hour;
+	}
+	
+	return resultString;
 };
 module.exports = WeatherInformer;

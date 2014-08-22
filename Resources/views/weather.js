@@ -1,4 +1,10 @@
 function CreateWeatherView(weather){
+	// var view1 = Ti.UI.createView({ backgroundColor:'#123' });
+// var view2 = Ti.UI.createView({ backgroundColor:'#246' });
+// var view3 = Ti.UI.createView({ backgroundColor:'#48b' });
+
+var pages = [];
+// app.window.add(scrollableView);
 	var view = Ti.UI.createScrollView({
 		width : '100%',
 		height : '100%',
@@ -13,7 +19,7 @@ function CreateWeatherView(weather){
 	});
 	
 	for(var i = 0, n = weather.list.length; i < n; i++ ){
-		var time = convertUnixTime(weather.list[i].dt);
+		var time = app.convertUnixTime(weather.list[i].dt);
 		var hourView = Ti.UI.createView({
 			width:'100%',
 			height:'100px',
@@ -63,40 +69,47 @@ function CreateWeatherView(weather){
 		hourView.add(temperatureContainer);
 		hourView.add(captionContainer);
 		
-		view.add(hourView);
+		// view.add(hourView);
+		pages.push(hourView);
 	}
-	return view;
+	var scrollableView = Ti.UI.createScrollableView({
+  		views:pages,
+  		showPagingControl:true
+	});
+
+	// return view;
+	return scrollableView;
 	
 }
-function convertUnixTime(unixTime){
-	var weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'];
-	var jsTime = new Date(unixTime * 1000),
-		day = jsTime.getDate(),
-		hour = jsTime.getHours(),
-		minute = jsTime.getMinutes(),
-		dayOfWeek = weekDays[jsTime.getDay()],
-		resultString = ''; 
-	if(day < 10){
-		resultString += '0' + day;
-	}
-	else{
-		resultString += day;
-	}
-	resultString += ', ' + dayOfWeek + ' ';
-	if(hour < 10){
-		resultString += '0' + hour;
-	}
-	else{
-		resultString += hour;
-	}
-	resultString += ':';
-	if(minute < 10){
-		resultString += '0' + minute;
-	}
-	else{
-		resultString += hour;
-	}
-	
-	return resultString;
-}
+// function convertUnixTime(unixTime){
+	// var weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thr', 'Fri', 'Sat'];
+	// var jsTime = new Date(unixTime * 1000),
+		// day = jsTime.getDate(),
+		// hour = jsTime.getHours(),
+		// minute = jsTime.getMinutes(),
+		// dayOfWeek = weekDays[jsTime.getDay()],
+		// resultString = ''; 
+	// if(day < 10){
+		// resultString += '0' + day;
+	// }
+	// else{
+		// resultString += day;
+	// }
+	// resultString += ', ' + dayOfWeek + ' ';
+	// if(hour < 10){
+		// resultString += '0' + hour;
+	// }
+	// else{
+		// resultString += hour;
+	// }
+	// resultString += ':';
+	// if(minute < 10){
+		// resultString += '0' + minute;
+	// }
+	// else{
+		// resultString += hour;
+	// }
+// 	
+	// return resultString;
+// }
 module.exports = CreateWeatherView;

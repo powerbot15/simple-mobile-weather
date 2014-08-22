@@ -100,8 +100,7 @@ function createFavoritesView(favorites){
 		});
 		favoriteName = Ti.UI.createLabel({
 			text : favorites[i],
-			color : '#333333',
-			id : favorites[i]
+			color : '#333333'
 		});
 		favoriteNameContainer.add(favoriteName);
 		
@@ -120,7 +119,7 @@ function createFavoritesView(favorites){
 		});
 		favoriteNameContainer.addEventListener('click', function(event){
 			this.setBackgroundColor('#BBBBBB');
-			app.goSearchView(event.source.id);
+			app.goSearchView(this.id);
 			// console.log(event.source);
 		});
 		favoriteRemoveContainer.addEventListener('click', function(event){
