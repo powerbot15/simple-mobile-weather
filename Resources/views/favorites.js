@@ -118,6 +118,7 @@ function createFavoritesView(favorites){
 			id : favorites[i]
 		});
 		favoriteNameContainer.addEventListener('click', function(event){
+			console.log(this.id);
 			this.setBackgroundColor('#BBBBBB');
 			app.goSearchView(this.id);
 			// console.log(event.source);

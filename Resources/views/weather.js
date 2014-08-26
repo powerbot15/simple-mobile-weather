@@ -23,20 +23,22 @@ var pages = [];
 		var hourView = Ti.UI.createView({
 			width:'100%',
 			height:'100px',
-			layout:'horizontal',
+			layout:'vertical',
 			borderWidth:'1px',
 			borderColor:'#444444',
 			backgroundSelectedColor:'#999999'
 		}),
 		captionContainer = Ti.UI.createView({
-			width:'30%'
+			width:'100%',
+			height: '10%'
 		}),
 		caption = Ti.UI.createLabel({
 			color:'#000000',
 			text : weather.city.name + ', ' + weather.city.country
 		}),
 		pictureContainer = Ti.UI.createView({
-			width:'20%'
+			width:'100%',
+			height:'82px'
 			// layout:'horizontal'
 		}),
 		picture = Ti.UI.createImageView({
@@ -45,7 +47,8 @@ var pages = [];
 			image:'http://openweathermap.org/img/w/'+ weather.list[i].weather[0].icon +'.png'
 		}),
 		temperatureContainer = Ti.UI.createView({
-			width:'20%'
+			width:'100%',
+			height:'10%'
 		}),
 		
 		temperature = Ti.UI.createLabel({
@@ -54,7 +57,8 @@ var pages = [];
 			// font : {fontSize : '12pt'}, 
 		}),
 		timeContainer = Ti.UI.createView({
-			width:'30%'
+			width:'100%',
+			height:'10%'
 		}),
 		timeString = Ti.UI.createLabel({
 			color:'#000000',
