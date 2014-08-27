@@ -1,5 +1,4 @@
 var searchView = require('../views/search'), 
-	// weatherView = require('../views/weather'),
 	forecast = require('../views/forecast'),
 	welcomeView = require('../views/welcome'),
 	favoritesView = require('../views/favorites'),

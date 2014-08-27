@@ -9,24 +9,24 @@ function createSearchView(searchValue){
 		inputView = Ti.UI.createView({
 			width:'100%',
 			layout:'horizontal',
-			backgroundColor:'#CDDB7F',
+			backgroundColor:'#3B8686',
 			height:'82px'
 		}),
 		starFavourites = Ti.UI.createImageView({
 			width:'10%',
 			// height:'60px',
 			image:'../img/star.png',
-			backgroundColor:'#CDDB7F',
+			backgroundColor:'#3B8686',
 			focusable:'true',
-			backgroundFocusedColor:'#ADBB5F',
-			backgroundSelectedColor:'#ADBB5F'
+			backgroundFocusedColor:'#0B8686',
+			backgroundSelectedColor:'#0B8686'
 		}),
 		cityInput = Ti.UI.createTextField({
 			width:'75%',
 			height:'80px',
 			hintText:'Type city name',
-			backgroundColor:'#CDDB7F',
-			backgroundFocusedColor:'#CDDB7F',
+			backgroundColor:'#3B8686',
+			backgroundFocusedColor:'#3B8686',
 			color:'#000000',
 			value: searchValue ? searchValue : '',
 			font:{fontWeight:'bold'},
@@ -42,7 +42,7 @@ function createSearchView(searchValue){
 			font:{fontSize:'8pt'},
 			title:'GO',
 			focusable:'true',
-			backgroundColor:'#6CA15C',
+			backgroundColor:'#0B486B',
 			backgroundSelectedColor:'#4C813C',
 			backgroundFocusedColor:'#4C813C',
 		});

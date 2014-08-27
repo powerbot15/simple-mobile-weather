@@ -41,7 +41,7 @@ function renderForecast(forecast){
 		dateHeader = Ti.UI.createView({
 			width:'50%',
 			height:'100%',
-			backgroundColor:'#60BFAE',
+			backgroundColor:'#79BD9A',
 			layout:'vertical'
 			
 		});
@@ -68,7 +68,7 @@ function renderForecast(forecast){
 		commonDayInfo = Ti.UI.createView({
 			width:'50%',
 			height:'100%',
-			backgroundColor:'#83DEBB',
+			backgroundColor:'#A8DBA8',
 			layout:'vertical'
 		});
 		headerView.add(dateHeader);
@@ -77,7 +77,7 @@ function renderForecast(forecast){
 		hoursList = Ti.UI.createView({
 			width : '100%',
 			height : '50%',
-			backgroundColor: '#B8F5D1',
+			backgroundColor: '#CFF09E',
 			layout : 'vertical'
 		});
 		rowHeight = (100 / forecast[i].times.length).toFixed(2) + '%'; 
@@ -151,7 +151,7 @@ function renderForecast(forecast){
 		}
 		
 		var commonDayLabel = Ti.UI.createLabel({
-			text : 'In this day : ',
+			text : 'At this day : ',
 			color:'#666666'
 		});
 		var minTempContainer = Ti.UI.createView({

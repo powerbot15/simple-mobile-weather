@@ -7,7 +7,7 @@ function createFavoritesView(favorites){
 	favoritesHeader = Ti.UI.createLabel({
 		width:'100%',
 		height:'80px',
-		color:'#000000',
+		color:'#666666',
 		font:{fontSize : '12pt'},
 		text: favorites.length > 0 ? 'Favorites :' : 'No favorites',
 		textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER
@@ -72,6 +72,11 @@ function createFavoritesView(favorites){
 			// backgroundColor:'#'
 			
 		});
+		favoriteRemove = Ti.UI.createLabel({
+			text : 'Remove',
+			color : '#000000'
+		});
+		favoriteRemoveContainer.add(favoriteRemove);
 		// favoriteRemoveButton = Ti.UI.createButton({
 			// width : '32px',
 			// height : '32px',

@@ -2,7 +2,8 @@ function CreateWelcomeView(){
 
 	var welcomeView = Ti.UI.createWindow({
 			layout:'vertical',
-			backgroundColor: '#FAE59B'
+			backgroundColor:'#79BD9A'
+			//backgroundColor: '#FAE59B'
 	});
 
 	welcomeView.addEventListener('androidback', function(event){
