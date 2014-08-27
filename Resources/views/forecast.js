@@ -123,7 +123,7 @@ function renderForecast(forecast){
 			
 			temperature = Ti.UI.createLabel({
 				color:'#6CA15C',
-				text : 't:' + (forecast[i].times[j].main.temp - 273.15).toFixed(0) + 'C'
+				text : 't:' + (forecast[i].times[j].main.temp - 273.15).toFixed(0) + '\u00B0' + 'C'
 				// font : {fontSize : '12pt'}, 
 			}),
 			timeContainer = Ti.UI.createView({
@@ -152,15 +152,19 @@ function renderForecast(forecast){
 		
 		var commonDayLabel = Ti.UI.createLabel({
 			text : 'At this day : ',
-			color:'#666666'
+			font:{
+				fontSize : '10pt',
+				fontWeight : 'bold'
+			},
+			color:'#444444'
 		});
 		var minTempContainer = Ti.UI.createView({
 			height : '10%',
-			layout : 'horizontal'
+			layout : 'vertical'
 		});
 		var maxTempContainer = Ti.UI.createView({
 			height : '10%',
-			layout : 'horizontal'
+			layout : 'vertical'
 		});
 
 		var minPressureContainer = Ti.UI.createView({
@@ -171,15 +175,35 @@ function renderForecast(forecast){
 			height : '10%',
 			layout : 'horizontal'
 		});
-		var minTempValue = Ti.UI.createLabel({
+		var minTempHeader = Ti.UI.createLabel({
 			width:'100%',
-			text : 'Min temp : t' + (minTemp.temp - 273.15).toFixed(0) + 'C',
+			text : 'Min temp :',
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
 			color:'#666666'
 		});
+		var tempTime = {
+			minHour : minTemp.time.getHours() < 9 ? '0' + minTemp.time.getHours() : '' + minTemp.time.getHours(),
+			minMinute : minTemp.time.getMinutes() < 9 ? '0' + minTemp.time.getMinutes() : '' + minTemp.time.getMinutes(),
+			maxHour : maxTemp.time.getHours() < 9 ? '0' + maxTemp.time.getHours() : '' + maxTemp.time.getHours(),
+			maxMinute : maxTemp.time.getMinutes() < 9 ? '0' + maxTemp.time.getMinutes() : '' + maxTemp.time.getMinutes() 
+		};
+			
+		var minTempValue = Ti.UI.createLabel({
+			width:'100%',
+			text : 't' + (minTemp.temp - 273.15).toFixed(0) + '\u00B0' + 'C at ' + tempTime.minHour + ':' + tempTime.minMinute,
+			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
+			color:'#666666'
+		});
+		var maxTempHeader = Ti.UI.createLabel({
+			width:'100%',
+			text : 'Max temp :',
+			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
+			color:'#666666'
+		});
+		
 		var maxTempValue = Ti.UI.createLabel({
 			width:'100%',
-			text : 'Max temp : t' + (minTemp.temp - 273).toFixed(0) + 'C',
+			text : 't' + (minTemp.temp - 273).toFixed(0) + '\u00B0' + 'C at ' + tempTime.maxHour + ':' + tempTime.maxMinute,
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 			color:'#666666'
 		});
@@ -196,7 +220,9 @@ function renderForecast(forecast){
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 			color:'#666666'
 		});
+		minTempContainer.add(minTempHeader);
 		minTempContainer.add(minTempValue);
+		maxTempContainer.add(maxTempHeader);
 		maxTempContainer.add(maxTempValue);
 		minPressureContainer.add(minPressureValue);
 		maxPressureContainer.add(maxPressureValue);
