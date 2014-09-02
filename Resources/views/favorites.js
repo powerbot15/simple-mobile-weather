@@ -26,7 +26,7 @@ function createFavoritesView(favorites){
 		top:'10px',
 		// bottom:'100px',
 		width : '95%',
-		height : '80%',
+		height : '60%',
 		borderColor:'#685D1E',
 		borderWidth:'1px',
 		contentWidth:'100%',
