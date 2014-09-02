@@ -66,11 +66,15 @@ function renderForecast(forecast){
 		dateHeader.add(dateLabelDate);
 		dateHeader.add(dateLabelDay);
 		commonDayInfo = Ti.UI.createView({
-			width:'50%',
-			height:'100%',
 			backgroundColor:'#A8DBA8',
 			layout:'vertical'
 		});
+		commonDayInfoContainer = Ti.UI.createView({
+			width:'50%',
+			height:'100%',
+			backgroundColor:'#A8DBA8'
+			// layout:'vertical'
+		}); 
 		headerView.add(dateHeader);
 		
 		
@@ -232,7 +236,8 @@ function renderForecast(forecast){
 		commonDayInfo.add(maxTempContainer);
 		commonDayInfo.add(minPressureContainer);
 		commonDayInfo.add(maxPressureContainer);
-		headerView.add(commonDayInfo);
+		commonDayInfoContainer.add(commonDayInfo);
+		headerView.add(commonDayInfoContainer);
 		page.add(headerView);
 		page.add(hoursList);
 		pages.push(page);
