@@ -184,7 +184,7 @@ function renderForecast(forecast){
 
 		var minTempHeader = Ti.UI.createLabel({
 			width:'100%',
-			text : 'Min temp : t' + (minTemp.temp - 273.15).toFixed(0) + '\u00B0' + 'C at ' + tempTime.minHour + ':' + tempTime.minMinute,
+			text : 'Temp : t' + (minTemp.temp - 273.15).toFixed(0) + '\u00B0' + 'C :' + 't' + (maxTemp.temp - 273).toFixed(0) + '\u00B0' + 'C',
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
 			color:'#666666'
 		});
@@ -211,7 +211,7 @@ function renderForecast(forecast){
 		
 		var minPressureValue = Ti.UI.createLabel({
 			width:'100%',
-			text : 'Min pressure : ' + (minPressure.pressure * 0.75008).toFixed(0),
+			text : 'Pressure : ' + (minPressure.pressure * 0.75008).toFixed(0) + ' : ' + (maxPressure.pressure * 0.75008).toFixed(0),
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
 			color:'#666666'
 		});
@@ -223,10 +223,10 @@ function renderForecast(forecast){
 		});
 		minTempContainer.add(minTempHeader);
 		// minTempContainer.add(minTempValue);
-		maxTempContainer.add(maxTempHeader);
+		// maxTempContainer.add(maxTempHeader);
 		// maxTempContainer.add(maxTempValue);
 		minPressureContainer.add(minPressureValue);
-		maxPressureContainer.add(maxPressureValue);
+		// maxPressureContainer.add(maxPressureValue);
 		commonDayInfo.add(commonDayLabel);
 		commonDayInfo.add(minTempContainer);
 		commonDayInfo.add(maxTempContainer);
