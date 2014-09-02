@@ -175,18 +175,19 @@ function renderForecast(forecast){
 			height : '10%',
 			layout : 'horizontal'
 		});
-		var minTempHeader = Ti.UI.createLabel({
-			width:'100%',
-			text : 'Min temp :',
-			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
-			color:'#666666'
-		});
 		var tempTime = {
 			minHour : minTemp.time.getHours() < 9 ? '0' + minTemp.time.getHours() : '' + minTemp.time.getHours(),
 			minMinute : minTemp.time.getMinutes() < 9 ? '0' + minTemp.time.getMinutes() : '' + minTemp.time.getMinutes(),
 			maxHour : maxTemp.time.getHours() < 9 ? '0' + maxTemp.time.getHours() : '' + maxTemp.time.getHours(),
 			maxMinute : maxTemp.time.getMinutes() < 9 ? '0' + maxTemp.time.getMinutes() : '' + maxTemp.time.getMinutes() 
 		};
+
+		var minTempHeader = Ti.UI.createLabel({
+			width:'100%',
+			text : 'Min temp : t' + (minTemp.temp - 273.15).toFixed(0) + '\u00B0' + 'C at ' + tempTime.minHour + ':' + tempTime.minMinute,
+			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
+			color:'#666666'
+		});
 			
 		var minTempValue = Ti.UI.createLabel({
 			width:'100%',
@@ -196,14 +197,14 @@ function renderForecast(forecast){
 		});
 		var maxTempHeader = Ti.UI.createLabel({
 			width:'100%',
-			text : 'Max temp :',
+			text : 'Max temp : t' + (maxTemp.temp - 273).toFixed(0) + '\u00B0' + 'C at ' + tempTime.maxHour + ':' + tempTime.maxMinute,
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
 			color:'#666666'
 		});
 		
 		var maxTempValue = Ti.UI.createLabel({
 			width:'100%',
-			text : 't' + (minTemp.temp - 273).toFixed(0) + '\u00B0' + 'C at ' + tempTime.maxHour + ':' + tempTime.maxMinute,
+			text : 't' + (maxTemp.temp - 273).toFixed(0) + '\u00B0' + 'C at ' + tempTime.maxHour + ':' + tempTime.maxMinute,
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER,
 			color:'#666666'
 		});
@@ -221,9 +222,9 @@ function renderForecast(forecast){
 			color:'#666666'
 		});
 		minTempContainer.add(minTempHeader);
-		minTempContainer.add(minTempValue);
+		// minTempContainer.add(minTempValue);
 		maxTempContainer.add(maxTempHeader);
-		maxTempContainer.add(maxTempValue);
+		// maxTempContainer.add(maxTempValue);
 		minPressureContainer.add(minPressureValue);
 		maxPressureContainer.add(maxPressureValue);
 		commonDayInfo.add(commonDayLabel);
