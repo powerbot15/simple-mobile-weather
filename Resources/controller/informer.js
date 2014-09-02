@@ -73,10 +73,16 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	     },
 	     onerror : function(e) {
 	         Ti.API.debug(e.error);
-	         self.weather = Ti.App.Properties.getString('lastForecast', 'empty');
+	         self.forecast = Ti.App.Properties.getString('lastForecast', 'empty');
 	         alert('Are you online?');
+	         if(self.forecast != 'empty'){
+	         	self.forecast = JSON.parse(self.forecast);
+	         	self.parseForecast(self.forecast);
+	         	self.renderForecast(self.forecast);
+	         }
+	         
 	         if(self.weather != 'empty'){
-	         	self.renderWeather();	
+	         		
 	         }
 	     },
 	     timeout : 20000  // in milliseconds
