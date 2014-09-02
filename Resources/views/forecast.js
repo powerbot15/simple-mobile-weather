@@ -176,10 +176,10 @@ function renderForecast(forecast){
 			layout : 'horizontal'
 		});
 		var tempTime = {
-			minHour : minTemp.time.getHours() < 9 ? '0' + minTemp.time.getHours() : '' + minTemp.time.getHours(),
-			minMinute : minTemp.time.getMinutes() < 9 ? '0' + minTemp.time.getMinutes() : '' + minTemp.time.getMinutes(),
-			maxHour : maxTemp.time.getHours() < 9 ? '0' + maxTemp.time.getHours() : '' + maxTemp.time.getHours(),
-			maxMinute : maxTemp.time.getMinutes() < 9 ? '0' + maxTemp.time.getMinutes() : '' + maxTemp.time.getMinutes() 
+			minHour : minTemp.time.getHours() < 10 ? '0' + minTemp.time.getHours() : '' + minTemp.time.getHours(),
+			minMinute : minTemp.time.getMinutes() < 10 ? '0' + minTemp.time.getMinutes() : '' + minTemp.time.getMinutes(),
+			maxHour : maxTemp.time.getHours() < 10 ? '0' + maxTemp.time.getHours() : '' + maxTemp.time.getHours(),
+			maxMinute : maxTemp.time.getMinutes() < 10 ? '0' + maxTemp.time.getMinutes() : '' + maxTemp.time.getMinutes() 
 		};
 
 		var minTempHeader = Ti.UI.createLabel({
