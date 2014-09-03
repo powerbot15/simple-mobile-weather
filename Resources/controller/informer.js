@@ -5,6 +5,12 @@ var searchView = require('../views/search'),
 	loader = require('../views/loader');
 
 function WeatherInformer(){
+	this.tempColors = {
+			cold:['#07093D', '#0C0F66', '#0B108C', '#0E4EAD'],
+			nearCold : ['#107FC9'],
+			warm:['#59A80F', '#E0E05A', '#F7C41F', '#FC930A']
+		};
+
 	this.init();
 }
 
@@ -18,7 +24,37 @@ WeatherInformer.prototype.init = function(){
 	// this.window.add(welcomeView(this.favorites));
 	this.window.open();
 };
+WeatherInformer.prototype.convertTempToColor = function(minTemp, maxTemp){
+	var avgTemp = (minTemp + maxTemp) / 2, 
+		color;
+	
+	if(avgTemp < -30){
+		color = this.tempColors.cold[0];
+	}
+	else if(avgTemp < -20){
+		color = this.tempColors.cold[1];
+	}
+	else if(avgTemp < -10){
+		color = this.tempColors.cold[2];
+	}
+	else if(avgTemp < 0){
+		color = this.tempColors.cold[3];
+	}
+	else if(avgTemp < 10){
+		color = this.tempColors.nearCold[0];
+	}
+	else if(avgTemp < 20){
+		color = this.tempColors.warm[0];
+	}
+	else if(avgTemp < 30){
+		color = this.tempColors.warm[1];
+	}
+	else if(avgTemp < 40){
+		color = this.tempColors.warm[2];
+	}
 
+	return color;
+};
 WeatherInformer.prototype.goSearchView = function(searchValue){
 	this.window.remove(this.window.getChildren()[0]);
 	this.window.add(searchView(searchValue));
