@@ -180,7 +180,7 @@ function renderForecast(forecast){
 
 		var minTempHeader = Ti.UI.createLabel({
 			width:'100%',
-			text : 't' + minTemp.temp.toFixed(0) + '\u00B0' + 'C - ' + 't' + maxTemp.temp.toFixed(0) + '\u00B0' + 'C',
+			text : 't' + minTemp.temp.toFixed(0) + '\u00B0' + 'C-' + 't' + maxTemp.temp.toFixed(0) + '\u00B0' + 'C',
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
 			font:{
 				fontWeight : 'bold', 
