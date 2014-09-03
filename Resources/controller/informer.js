@@ -15,13 +15,10 @@ function WeatherInformer(){
 }
 
 WeatherInformer.prototype.init = function(){
-	// this.window = searchView();
 	this.lastForecast = JSON.parse(Ti.App.Properties.getString('lastForecast', '{}'));
 	this.favorites = JSON.parse(Ti.App.Properties.getString('favorites','[]'));
-	console.log(this.favorites);
 	this.window = welcomeView();
 	this.window.add(favoritesView(this.favorites));
-	// this.window.add(welcomeView(this.favorites));
 	this.window.open();
 };
 WeatherInformer.prototype.convertTempToColor = function(minTemp, maxTemp){
@@ -64,29 +61,15 @@ WeatherInformer.prototype.goSearchView = function(searchValue){
 };
 
 WeatherInformer.prototype.search = function(searchString){
-		var app = this;
-		if(app.notFirstRender){
-			app.window.remove(app.window.getChildren()[1]);
-		}
-		else{
-			app.notFirstRender = true;	
-		}
-		
-// var view1 = Ti.UI.createView({ backgroundColor:'#123' });
-// var view2 = Ti.UI.createView({ backgroundColor:'#246' });
-// var view3 = Ti.UI.createView({ backgroundColor:'#48b' });
-// 
-// var scrollableView = Ti.UI.createScrollableView({
-  // views:[view1,view2,view3],
-  // showPagingControl:true
-// });
-// 
-// app.window.add(scrollableView);
-		
-		app.window.add(loader());
-		console.log(searchString);
-		app.getForecast(searchString);	
-		//app.parseForecast(app.forecast);
+	var app = this;
+	if(app.notFirstRender){
+		app.window.remove(app.window.getChildren()[1]);
+	}
+	else{
+		app.notFirstRender = true;	
+	}
+	app.window.add(loader());
+	app.getForecast(searchString);	
 };
 
 WeatherInformer.prototype.getForecast = function(cityName){
@@ -104,7 +87,6 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	         self.weather = responceObj;
 	         self.parseForecast(responceObj);
 	         self.canFavorite = true;
-	         // self.renderWeather();
 	         self.renderForecast(self.forecast);
 	     },
 	     onerror : function(e) {
@@ -116,10 +98,6 @@ WeatherInformer.prototype.getForecast = function(cityName){
 	         	self.parseForecast(self.forecast);
 	         	self.renderForecast(self.forecast);
 	         }
-	         
-	         if(self.weather != 'empty'){
-	         		
-	         }
 	     },
 	     timeout : 20000  // in milliseconds
 	 });
@@ -129,9 +107,7 @@ WeatherInformer.prototype.getForecast = function(cityName){
 
 WeatherInformer.prototype.parseForecast = function(apiForecast){
 	var forecastDays = [],
-		oneDay = {
-			
-		}, 
+		oneDay = {}, 
 		time;
 	for(var i = 0; i < apiForecast.list.length; i++){
 		time = new Date(apiForecast.list[i].dt * 1000);//this.convertUnixTime(apiForecast.list[i].dt);
@@ -147,9 +123,6 @@ WeatherInformer.prototype.parseForecast = function(apiForecast){
 		}
 	}
 	this.forecast = forecastDays; 
-	// console.log(forecastDays.length);
-	// var time = app.convertUnixTime(weather.list[i].dt);
-	// var pressure = apiForecast.pressure * 0.75008;
 };
 
 WeatherInformer.prototype.addToFavorites = function(value){

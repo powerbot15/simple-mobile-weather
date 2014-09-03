@@ -14,7 +14,6 @@ function createSearchView(searchValue){
 		}),
 		starFavourites = Ti.UI.createImageView({
 			width:'10%',
-			// height:'60px',
 			image:'../img/star.png',
 			backgroundColor:'#3B8686',
 			focusable:'true',
@@ -33,8 +32,6 @@ function createSearchView(searchValue){
 			borderWidth:'2px',
 			borderColor:'#8D9B2F',
 			borderRadius:'25px'
-			
-			
 		}),
 		acceptButton = Ti.UI.createButton({
 			width:'15%',
@@ -54,7 +51,6 @@ function createSearchView(searchValue){
 		else{
 			cityInput.focus();
 		}
-		// app.getNowWeather(cityInput.value);
 	});
 	
 	cityInput.addEventListener('return', function(){

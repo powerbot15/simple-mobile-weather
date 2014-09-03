@@ -44,51 +44,43 @@ function createFavoritesView(favorites){
 	
 	favoritesView.add(favoritesHeader);
 	
-		favoriteRow = Ti.UI.createView({
-			width:'100%',
-			height: '80px',
-			layout : 'horizontal',
-			id : i
-			
-		});
-		favoriteNameContainer = Ti.UI.createView({
-			width:'80%',
-			borderWidth:'1px',
-			borderColor:'#685D1E',
-			color:'#FFFFFF',
-			backgroundColor:'#D3EB9E'
-		});
-		favoriteName = Ti.UI.createLabel({
-			text : 'City',
-			color : '#000000'
-		});
-		favoriteNameContainer.add(favoriteName);
+	favoriteRow = Ti.UI.createView({
+		width:'100%',
+		height: '80px',
+		layout : 'horizontal',
+		id : i
 		
-		favoriteRemoveContainer = Ti.UI.createView({
-			width:'20%',
-			borderWidth:'1px',
-			borderColor:'#685D1E',
-			backgroundColor:'#D3EB9E'
-			// backgroundColor:'#'
-			
-		});
-		favoriteRemove = Ti.UI.createLabel({
-			text : 'Remove',
-			color : '#000000'
-		});
-		favoriteRemoveContainer.add(favoriteRemove);
-		// favoriteRemoveButton = Ti.UI.createButton({
-			// width : '32px',
-			// height : '32px',
-			// backgroundImage : '../img/remove.png',
-			// id : favorites[i]
-		// });
+	});
+	favoriteNameContainer = Ti.UI.createView({
+		width:'80%',
+		borderWidth:'1px',
+		borderColor:'#685D1E',
+		color:'#FFFFFF',
+		backgroundColor:'#D3EB9E'
+	});
+	favoriteName = Ti.UI.createLabel({
+		text : 'City',
+		color : '#000000'
+	});
+	favoriteNameContainer.add(favoriteName);
+	
+	favoriteRemoveContainer = Ti.UI.createView({
+		width:'20%',
+		borderWidth:'1px',
+		borderColor:'#685D1E',
+		backgroundColor:'#D3EB9E'
+		// backgroundColor:'#'
+		
+	});
+	favoriteRemove = Ti.UI.createLabel({
+		text : 'Remove',
+		color : '#000000'
+	});
+	favoriteRemoveContainer.add(favoriteRemove);
 	favoriteRow.add(favoriteNameContainer);
 	favoriteRow.add(favoriteRemoveContainer);
 	favoritesContent.add(favoriteRow);
-	
 	for(var i = 0; i < favorites.length; i++){
-		
 		favoriteRow = Ti.UI.createView({
 			width:'100%',
 			height: '60px',
@@ -113,8 +105,6 @@ function createFavoritesView(favorites){
 			width:'20%',
 			borderWidth:'1px',
 			borderColor:'#685D1E'
-			// backgroundColor:'#'
-			
 		});
 		favoriteRemoveButton = Ti.UI.createButton({
 			width : '32px',
@@ -138,11 +128,8 @@ function createFavoritesView(favorites){
 		favoriteRow.add(favoriteRemoveContainer);
 		favoritesContent.add(favoriteRow);
 	}
-	
-	 
 	favoritesView.add(favoritesContent);
 	favoritesView.add(goSearch);
-	//welcomeView.add(favoritesView);
 	return favoritesView;
 }	
 	
