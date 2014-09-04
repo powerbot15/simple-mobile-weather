@@ -51,7 +51,7 @@ function renderForecast(forecast){
 			height: '50%',
 			text : day + ' ' + month,
 			verticalAlign : Titanium.UI.TEXT_VERTICAL_ALIGNMENT_BOTTOM,
-			color : '#666666'
+			color : '#444444'
 			
 		});
 		dateLabelDay = Ti.UI.createLabel({
@@ -59,23 +59,10 @@ function renderForecast(forecast){
 			height:'50%',
 			text : dayOfWeek,
 			verticalAlign : Titanium.UI.TEXT_VERTICAL_ALIGNMENT_TOP,
-			color : '#666666'
+			color : '#444444'
 		});
 		dateHeader.add(dateLabelDate);
 		dateHeader.add(dateLabelDay);
-		commonDayInfoContainer = Ti.UI.createView({
-			width:'50%',
-			height:'100%',
-			backgroundColor:'#A8DBA8'
-		});
-		commonDayInfo = Ti.UI.createView({
-			top:'25%',
-			height:'50%',
-			width:'100%',
-			// height:'50%',
-			
-			layout:'vertical'
-		});
 		headerView.add(dateHeader);
 		
 		
@@ -152,10 +139,33 @@ function renderForecast(forecast){
 			hoursList.add(hoursRow);
 			
 		}
+		commonDayInfoContainer = Ti.UI.createView({
+			width:'50%',
+			height:'100%',
+			backgroundColor:'#A8DBA8'
+		});
+		var commonDayInfoTop, commonDayInfoHeight;
+		if(i != 0){
+			commonDayInfoTop = '25%';
+			commonDayInfoHeight = '50%';
+		}
+		else{
+			commonDayInfoTop = '15%';
+			commonDayInfoHeight = '70%';
+		}
+		commonDayInfo = Ti.UI.createView({
+			top:commonDayInfoTop,
+			height:commonDayInfoHeight,
+			width:'100%',
+			// height:'50%',
+			
+			layout:'vertical'
+		});
+
 		minTemp.temp -= 273.15;
 		maxTemp.temp -= 273.15;
 		var commonDayLabelContainer = Ti.UI.createView({
-			height:'40%',
+			height:'30%',
 		});
 		var commonDayLabel = Ti.UI.createLabel({
 			text : 'At this day : ',
@@ -163,13 +173,29 @@ function renderForecast(forecast){
 				fontSize : '10pt',
 				fontWeight : 'bold'
 			},
-			color:'#444444'
+			color:'#444444',
+			verticalAlign : Titanium.UI.TEXT_VERTICAL_ALIGNMENT_TOP
 		});
-		var minTempContainer = Ti.UI.createView({
-			height : '30%'
+		var containersHeight, windContainer;
+		if(i != 0){
+			containersHeight = '35%';
+		}
+		else{
+			containersHeight = '25%';
+			windContainer = Ti.UI.createView({
+				height : containersHeight
+			});
+			windValue = Ti.UI.createLabel({
+				text: 'Wind : ' + forecast[0].times[1].wind.speed + 'mps, ' + app.convertWindDirection(forecast[0].times[1].wind.deg),
+				color:'#444444'
+			});
+			windContainer.add(windValue);
+		}
+		var tempContainer = Ti.UI.createView({
+			height : containersHeight
 		});
-		var minPressureContainer = Ti.UI.createView({
-			height : '30%'
+		var pressureContainer = Ti.UI.createView({
+			height : containersHeight
 		});
 		var tempTime = {
 			minHour : minTemp.time.getHours() < 10 ? '0' + minTemp.time.getHours() : '' + minTemp.time.getHours(),
@@ -178,7 +204,7 @@ function renderForecast(forecast){
 			maxMinute : maxTemp.time.getMinutes() < 10 ? '0' + maxTemp.time.getMinutes() : '' + maxTemp.time.getMinutes() 
 		};
 
-		var minTempHeader = Ti.UI.createLabel({
+		var temperature = Ti.UI.createLabel({
 			width:'100%',
 			text : 't' + minTemp.temp.toFixed(0) + '\u00B0' + 'C-' + 't' + maxTemp.temp.toFixed(0) + '\u00B0' + 'C',
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
@@ -192,18 +218,21 @@ function renderForecast(forecast){
 			color:app.convertTempToColor(minTemp.temp, maxTemp.temp)
 		});
 			
-		var minPressureValue = Ti.UI.createLabel({
+		var pressure = Ti.UI.createLabel({
 			width:'100%',
-			text : 'Pressure : ' + (minPressure.pressure * 0.75008).toFixed(0) + ' : ' + (maxPressure.pressure * 0.75008).toFixed(0),
+			text : 'Pressure : ' + (minPressure.pressure * 0.75008).toFixed(0) + '-' + (maxPressure.pressure * 0.75008).toFixed(0),
 			textAlign : Ti.UI.TEXT_ALIGNMENT_CENTER, 
-			color:'#666666'
+			color:'#444444'
 		});
 		commonDayLabelContainer.add(commonDayLabel);
-		minTempContainer.add(minTempHeader);
-		minPressureContainer.add(minPressureValue);
+		tempContainer.add(temperature);
+		pressureContainer.add(pressure);
 		commonDayInfo.add(commonDayLabelContainer);
-		commonDayInfo.add(minTempContainer);
-		commonDayInfo.add(minPressureContainer);
+		commonDayInfo.add(tempContainer);
+		commonDayInfo.add(pressureContainer);
+		if(i == 0){
+			commonDayInfo.add(windContainer);
+		}
 		commonDayInfoContainer.add(commonDayInfo);
 		headerView.add(commonDayInfoContainer);
 		page.add(headerView);

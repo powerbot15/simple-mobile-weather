@@ -52,6 +52,35 @@ WeatherInformer.prototype.convertTempToColor = function(minTemp, maxTemp){
 
 	return color;
 };
+WeatherInformer.prototype.convertWindDirection = function(meteorologicalDegrees){
+	var windPoint;
+	if(meteorologicalDegrees < 22.5 && meteorologicalDegrees > 337.5){
+		windPoint = 'S';
+	}
+	else if(meteorologicalDegrees < 67.5){
+		windPoint = 'SW';
+	}
+	else if(meteorologicalDegrees < 112.5){
+		windPoint = 'W';
+	}
+	else if(meteorologicalDegrees < 157.5){
+		windPoint = 'NW';
+	}
+	else if(meteorologicalDegrees < 202.5){
+		windPoint = 'N';
+	}
+	else if(meteorologicalDegrees < 247.5){
+		windPoint = 'NE';
+	}
+	else if(meteorologicalDegrees < 292.5){
+		windPoint = 'E';
+	}
+	else if(meteorologicalDegrees < 337.5){
+		windPoint = 'SE';
+	}
+	
+	return windPoint;
+};
 WeatherInformer.prototype.goSearchView = function(searchValue){
 	this.window.remove(this.window.getChildren()[0]);
 	this.window.add(searchView(searchValue));
